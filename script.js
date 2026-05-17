@@ -1,71 +1,121 @@
-async function askAI() {
+const content =
+document.getElementById("subject-content");
 
-const question =
-document.getElementById("question").value;
+function showBiology(){
 
-const result =
+content.innerHTML =
+
+`
+<h2>🧬 Biology</h2>
+
+<p>
+Biology helps us understand living organisms,
+plants, animals, and the human body.
+</p>
+`;
+
+}
+
+function showPhysics(){
+
+content.innerHTML =
+
+`
+<h2>⚡ Physics</h2>
+
+<p>
+Physics explains motion, gravity,
+energy, and forces.
+</p>
+`;
+
+}
+
+function showChemistry(){
+
+content.innerHTML =
+
+`
+<h2>🧪 Chemistry</h2>
+
+<p>
+Chemistry studies atoms,
+elements, and chemical reactions.
+</p>
+`;
+
+}
+
+function askAI(){
+
+let question =
+document.getElementById("question").value.toLowerCase();
+
+let result =
 document.getElementById("result");
 
-if(question === ""){
+if(question==""){
+
 result.innerHTML =
-"Please enter a question.";
+"Please enter a science question.";
+
 return;
+
 }
+
+if(question.includes("photosynthesis")){
 
 result.innerHTML =
-"Loading AI response...";
+"Photosynthesis is the process by which plants make food using sunlight.";
 
-const API_KEY = "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";
-
-try {
-
-const response = await fetch(
-"https://openrouter.ai/api/v1/chat/completions",
-{
-method: "POST",
-headers: {
-"Authorization": `Bearer ${API_KEY}`,
-"HTTP-Referer":
-"https://bhavyasrilakshmiande.github.io",
-"Content-Type": "application/json"
-},
-body: JSON.stringify({
-model: "openai/gpt-3.5-turbo",
-messages: [
-{
-role: "user",
-content: question
 }
-]
-})
-}
-);
 
-const data = await response.json();
-
-console.log(data);
-
-if(data.choices){
+else if(question.includes("gravity")){
 
 result.innerHTML =
-data.choices[0].message.content;
+"Gravity is the force that attracts objects toward Earth.";
 
 }
+
+else if(question.includes("atom")){
+
+result.innerHTML =
+"An atom is the smallest unit of matter.";
+
+}
+
+else if(question.includes("heart")){
+
+result.innerHTML =
+"The heart pumps blood throughout the body.";
+
+}
+
 else{
 
 result.innerHTML =
-JSON.stringify(data);
+"AI is learning this science topic.";
 
 }
 
 }
 
-catch(error){
+function checkAnswer(answer){
 
-console.log(error);
+let quiz =
+document.getElementById("quiz-result");
 
-result.innerHTML =
-"Connection failed.";
+if(answer=="correct"){
+
+quiz.innerHTML =
+"✅ Correct Answer!";
+
+}
+
+else{
+
+quiz.innerHTML =
+"❌ Wrong Answer";
 
 }
 
