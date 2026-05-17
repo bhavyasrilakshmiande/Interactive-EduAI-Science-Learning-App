@@ -1,121 +1,59 @@
-const content =
-document.getElementById("subject-content");
+async function askAI() {
 
-function showBiology(){
+const question =
+document.getElementById("question").value;
 
-content.innerHTML =
-
-`
-<h2>🧬 Biology</h2>
-
-<p>
-Biology helps us understand living organisms,
-plants, animals, and the human body.
-</p>
-`;
-
-}
-
-function showPhysics(){
-
-content.innerHTML =
-
-`
-<h2>⚡ Physics</h2>
-
-<p>
-Physics explains motion, gravity,
-energy, and forces.
-</p>
-`;
-
-}
-
-function showChemistry(){
-
-content.innerHTML =
-
-`
-<h2>🧪 Chemistry</h2>
-
-<p>
-Chemistry studies atoms,
-elements, and chemical reactions.
-</p>
-`;
-
-}
-
-function askAI(){
-
-let question =
-document.getElementById("question").value.toLowerCase();
-
-let result =
+const result =
 document.getElementById("result");
 
-if(question==""){
-
+if(question === ""){
 result.innerHTML =
-"Please enter a science question.";
-
+"Please enter a question.";
 return;
-
 }
-
-if(question.includes("photosynthesis")){
 
 result.innerHTML =
-"Photosynthesis is the process by which plants make food using sunlight.";
+"Loading AI response...";
 
+const API_KEY = "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";
+
+try {
+
+const response = await fetch(
+"https://api.groq.com/openai/v1/chat/completions",
+{
+method: "POST",
+headers: {
+"Authorization": `Bearer ${API_KEY}`,
+"Content-Type": "application/json"
+},
+body: JSON.stringify({
+model: "llama3-8b-8192",
+messages: [
+{
+role: "user",
+content: question
 }
+]
+})
+}
+);
 
-else if(question.includes("gravity")){
+const data = await response.json();
+
+console.log(data);
 
 result.innerHTML =
-"Gravity is the force that attracts objects toward Earth.";
+data.choices[0].message.content;
 
 }
 
-else if(question.includes("atom")){
+catch(error){
+
+console.log(error);
 
 result.innerHTML =
-"An atom is the smallest unit of matter.";
-
-}
-
-else if(question.includes("heart")){
-
-result.innerHTML =
-"The heart pumps blood throughout the body.";
-
-}
-
-else{
-
-result.innerHTML =
-"AI is learning this science topic.";
-
-}
-
-}
-
-function checkAnswer(answer){
-
-let quiz =
-document.getElementById("quiz-result");
-
-if(answer=="correct"){
-
-quiz.innerHTML =
-"✅ Correct Answer!";
-
-}
-
-else{
-
-quiz.innerHTML =
-"❌ Wrong Answer";
+"AI connection failed.";
 
 }
 
