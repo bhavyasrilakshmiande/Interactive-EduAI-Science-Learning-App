@@ -1,62 +1,44 @@
-async function askAI() {
+function askAI() {
 
-let question = document.getElementById("question").value;
+let question =
+document.getElementById("question").value;
 
-let result = document.getElementById("result");
+let result =
+document.getElementById("result");
 
-if(question === ""){
-result.innerHTML = "Please enter a question.";
+if(question==""){
+result.innerHTML =
+"Please enter a science question.";
 return;
 }
 
-result.innerHTML = "Loading AI response...";
+question = question.toLowerCase();
 
-const API_KEY = "AIzaSyCdOaw7Dj0nT7YaV9AgAt5YCAdlGvAkMPw";
+if(question.includes("photosynthesis")){
 
-try {
-
-const response = await fetch(
-`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`,
-{
-method: "POST",
-headers: {
-"Content-Type": "application/json"
-},
-body: JSON.stringify({
-contents: [
-{
-parts: [
-{
-text: question
-}
-]
-}
-]
-})
-}
-);
-
-const data = await response.json();
-
-console.log(data);
-
-if(data.candidates){
 result.innerHTML =
-data.candidates[0].content.parts[0].text;
+"Photosynthesis is the process by which plants make food using sunlight, water, and carbon dioxide.";
+
 }
+
+else if(question.includes("gravity")){
+
+result.innerHTML =
+"Gravity is the force that attracts objects toward Earth.";
+
+}
+
+else if(question.includes("atom")){
+
+result.innerHTML =
+"An atom is the smallest unit of matter.";
+
+}
+
 else{
-result.innerHTML =
-"API error. Check API key.";
-}
-
-}
-
-catch(error){
-
-console.log(error);
 
 result.innerHTML =
-"Connection failed.";
+"AI is generating educational response for your science question.";
 
 }
 
