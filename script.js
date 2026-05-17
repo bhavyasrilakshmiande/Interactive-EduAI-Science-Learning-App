@@ -12,7 +12,7 @@ result.innerHTML =
 return;
 }
 
-result.innerHTML = "Thinking...";
+result.innerHTML = "Loading AI response...";
 
 const API_KEY = "AIzaSyCdOaw7Dj0nT7YaV9AgAt5YCAdlGvAkMPw";
 
@@ -39,15 +39,13 @@ const data = await response.json();
 
 console.log(data);
 
-result.innerHTML =
-data.candidates[0].content.parts[0].text;
+result.innerHTML = data.candidates[0].content.parts[0].text;
 
 }
 
 catch(error){
 
-result.innerHTML =
-"Error loading AI response.";
+result.innerHTML = "Error loading AI response.";
 
 console.log(error);
 
