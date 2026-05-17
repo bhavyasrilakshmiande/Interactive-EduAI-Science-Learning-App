@@ -1,44 +1,59 @@
-function askAI() {
+async function askAI() {
 
-let question =
+const question =
 document.getElementById("question").value;
 
-let result =
+const result =
 document.getElementById("result");
 
-if(question==""){
+if(question === ""){
 result.innerHTML =
-"Please enter a science question.";
+"Please enter a question.";
 return;
 }
 
-question = question.toLowerCase();
+result.innerHTML =
+"Loading AI response...";
 
-if(question.includes("photosynthesis")){
+const API_KEY = "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";
+
+try {
+
+const response = await fetch(
+"https://openrouter.ai/api/v1/chat/completions",
+{
+method: "POST",
+headers: {
+"Authorization": `Bearer ${API_KEY}`,
+"Content-Type": "application/json"
+},
+body: JSON.stringify({
+model: "mistralai/mistral-7b-instruct",
+messages: [
+{
+role: "user",
+content: question
+}
+]
+})
+}
+);
+
+const data = await response.json();
+
+console.log(data);
 
 result.innerHTML =
-"Photosynthesis is the process by which plants make food using sunlight, water, and carbon dioxide.";
+data.choices[0].message.content;
 
 }
 
-else if(question.includes("gravity")){
+catch(error){
+
+console.log(error);
 
 result.innerHTML =
-"Gravity is the force that attracts objects toward Earth.";
-
-}
-
-else if(question.includes("atom")){
-
-result.innerHTML =
-"An atom is the smallest unit of matter.";
-
-}
-
-else{
-
-result.innerHTML =
-"AI is generating educational response for your science question.";
+"AI response failed.";
 
 }
 
