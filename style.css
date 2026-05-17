@@ -1,60 +1,131 @@
 body{
-background:#0f172a;
-font-family:Arial;
-color:white;
+
 margin:0;
 padding:0;
+font-family:Arial;
+background:#0f172a;
+color:white;
+
 }
 
 .container{
+
 padding:20px;
 text-align:center;
+
 }
 
 h1{
-font-size:40px;
+
+font-size:45px;
+
+}
+
+.subtitle{
+
+font-size:18px;
+margin-bottom:25px;
+color:#cbd5e1;
+
 }
 
 .subjects button{
+
 margin:10px;
 padding:12px 20px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 background:#2563eb;
 color:white;
 font-size:16px;
+
+}
+
+.subjects button:hover{
+
+background:#1d4ed8;
+
+}
+
+#subject-content{
+
+margin-top:25px;
+padding:20px;
+background:#1e293b;
+border-radius:15px;
+
+}
+
+.chat-section{
+
+margin-top:30px;
+
 }
 
 textarea{
+
 width:90%;
 height:120px;
-margin-top:20px;
 padding:15px;
-border-radius:10px;
 border:none;
+border-radius:12px;
 font-size:16px;
+
 }
 
 .ask-btn{
+
 margin-top:20px;
 padding:12px 25px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 background:#22c55e;
 color:white;
 font-size:18px;
+
 }
 
 #result{
+
 margin-top:20px;
-background:#1e293b;
 padding:20px;
-border-radius:10px;
+background:#1e293b;
+border-radius:12px;
 min-height:80px;
+
+}
+
+.quiz-box{
+
+margin-top:40px;
+padding:20px;
+background:#1e293b;
+border-radius:15px;
+
+}
+
+.quiz-box button{
+
+margin:10px;
+padding:10px 20px;
+border:none;
+border-radius:10px;
+background:#f59e0b;
+color:white;
+
+}
+
+#quiz-result{
+
+margin-top:15px;
+font-size:18px;
+
 }
 
 .note{
-margin-top:30px;
+
+margin-top:40px;
 font-size:12px;
 color:lightgray;
+
 }
