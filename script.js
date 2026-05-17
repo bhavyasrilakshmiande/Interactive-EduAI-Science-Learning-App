@@ -25,10 +25,12 @@ const response = await fetch(
 method: "POST",
 headers: {
 "Authorization": `Bearer ${API_KEY}`,
+"HTTP-Referer":
+"https://bhavyasrilakshmiande.github.io",
 "Content-Type": "application/json"
 },
 body: JSON.stringify({
-model: "mistralai/mistral-7b-instruct",
+model: "openai/gpt-3.5-turbo",
 messages: [
 {
 role: "user",
@@ -43,8 +45,18 @@ const data = await response.json();
 
 console.log(data);
 
+if(data.choices){
+
 result.innerHTML =
 data.choices[0].message.content;
+
+}
+else{
+
+result.innerHTML =
+JSON.stringify(data);
+
+}
 
 }
 
@@ -53,7 +65,7 @@ catch(error){
 console.log(error);
 
 result.innerHTML =
-"AI response failed.";
+"Connection failed.";
 
 }
 
