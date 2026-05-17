@@ -58,7 +58,7 @@ result.innerHTML =
 "Loading AI response...";
 
 const API_KEY =
-"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";
+"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";
 
 try {
 
